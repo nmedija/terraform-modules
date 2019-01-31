@@ -1,19 +1,19 @@
 variable "vpc_id" { }
 
 variable "subnet_prefix" {
-    default = "private"
+  default = "private"
 }
 
 variable "azs" {
-    type = "list"
+  type = "list"
 }
 
 variable "cidrs"  {
-    type = "map"
+  type = "map"
 }
 
 variable "nat_gateway_ids" {
-    type = "list"
+  type = "list"
 }
 
 variable "nat_gateway_count" { }

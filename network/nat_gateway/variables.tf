@@ -1,15 +1,15 @@
 variable "prefix_name" {
-    default = "nat"
+  default = "nat"
 }
 
 variable "azs" {
-    type = "list"
+  type = "list"
 }
 
 variable "public_subnet_ids" {
-    type = "list"
+  type = "list"
 }
 
 variable "nat_gateway_count" {
-    default = 1
+  default = 1
 }

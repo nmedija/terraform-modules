@@ -1,13 +1,13 @@
 variable "subnet_prefix" {
-    default = "public"
+  default = "public"
 }
 
 variable "vpc_id" { }
 
 variable "azs" {
-    type = "list"
+  type = "list"
 }
 
 variable "cidrs" {
-    type = "map"
+  type = "map"
 }

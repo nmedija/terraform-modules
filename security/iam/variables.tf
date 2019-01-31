@@ -1,11 +1,11 @@
 variable "group_name" {
-    default = "default_group"
+  default = "default_group"
 }
 
 variable "users" {
-    type = "list"
+  type = "list"
 }
 
 variable "policy" {
-    type = "string"
+  type = "string"
 }

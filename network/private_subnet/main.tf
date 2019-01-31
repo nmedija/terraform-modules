@@ -1,35 +1,35 @@
 resource "aws_subnet" "private" {
-    vpc_id = "${var.vpc_id}"
-    count = "${length(var.azs)}"
-    cidr_block = "${lookup(var.cidrs, element(var.azs, count.index))}"
-    availability_zone = "${element(var.azs, count.index)}"
+  vpc_id = "${var.vpc_id}"
+  count = "${length(var.azs)}"
+  cidr_block = "${lookup(var.cidrs, element(var.azs, count.index))}"
+  availability_zone = "${element(var.azs, count.index)}"
 
-    lifecycle {
-        create_before_destroy = true
-    }
-    tags {
-        Name = "${var.subnet_prefix}-${element(var.azs, count.index)}"
-        Tier = "${var.subnet_prefix}"
-    }
+  lifecycle {
+    create_before_destroy = true
+  }
+  tags {
+    Name = "${var.subnet_prefix}-${element(var.azs, count.index)}"
+    Tier = "${var.subnet_prefix}"
+  }
 }
 
 resource "aws_route_table" "private" {
-    vpc_id = "${var.vpc_id}"
-    count = "${var.nat_gateway_count}"
+  vpc_id = "${var.vpc_id}"
+  count = "${var.nat_gateway_count}"
 
-    route {
-        cidr_block = "0.0.0.0/0"
-        nat_gateway_id = "${element(var.nat_gateway_ids, count.index)}"
-    }
+  route {
+    cidr_block = "0.0.0.0/0"
+    nat_gateway_id = "${element(var.nat_gateway_ids, count.index)}"
+  }
 
-    route {
-        ipv6_cidr_block = "::/0"
-        egress_only_gateway_id = "${var.egress_only_gateway_id}"
-    }
+  route {
+    ipv6_cidr_block = "::/0"
+    egress_only_gateway_id = "${var.egress_only_gateway_id}"
+  }
 
-    tags {
-        Name = "${var.subnet_prefix}-nat-route"
-    }
+  tags {
+    Name = "${var.subnet_prefix}-nat-route"
+  }
 }
 
 resource "aws_route_table_association" "private" {
